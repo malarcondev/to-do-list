@@ -1,0 +1,14 @@
+server:
+  port: 8095
+spring:
+  datasource:
+    hikari:
+      connectionTimeout: 20000
+      maximumPoolSize: 2
+    password: vMJT3Herf_vfqVJqFR-IrsmXg5Xlqcyc
+    url: jdbc:postgresql://peanut.db.elephantsql.com/xplsmxks
+    username: xplsmxks
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: true
