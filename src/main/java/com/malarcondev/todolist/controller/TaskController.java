@@ -26,9 +26,14 @@ public class TaskController {
         return taskService.saveTask(body);
     }
 
-    @PutMapping()
+    @PutMapping("/update")
     @ResponseStatus(HttpStatus.OK)
     public TaskDTO updateMeal(@RequestBody TaskDTO body) throws Exception {
         return taskService.updateTask(body);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public void deleteDebts(@PathVariable Long id) throws Exception {
+        taskService.deleteTask(id);
     }
 }

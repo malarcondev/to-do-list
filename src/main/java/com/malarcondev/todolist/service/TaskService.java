@@ -6,6 +6,7 @@ import com.malarcondev.todolist.mapper.TaskMapper;
 import com.malarcondev.todolist.repository.TaskRepository;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.scheduling.config.Task;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -17,7 +18,7 @@ public class TaskService {
     private final TaskMapper taskMapper;
     private final TaskRepository taskRepository;
 
-    public List<TaskDTO> findAllTasks(){
+    public List<TaskDTO> findAllTasks() {
         return taskMapper.toDtoList(taskRepository.findAll());
     }
 
@@ -38,11 +39,20 @@ public class TaskService {
                 .orElseThrow(() -> new Exception("el titulo es requerido"));
 
         Optional<TaskEntity> taskEntityOpt = taskRepository.findById(entity.getId());
-        if (taskEntityOpt.isPresent()){
+        if (taskEntityOpt.isPresent()) {
             TaskEntity saved = taskRepository.save(entity);
             return taskMapper.toDto(saved);
         } else {
-           throw new Exception("Tarea no encontrado");
+            throw new Exception("Tarea no encontrado");
+        }
+    }
+
+    public void deleteTask(Long id) throws Exception {
+        Optional<TaskEntity> taskOpt = taskRepository.findById(id);
+        if (taskOpt.isPresent()) {
+            taskRepository.deleteById(id);
+        } else {
+            throw new Exception("Tarea no encontrado");
         }
     }
 }
