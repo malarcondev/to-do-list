@@ -1,10 +1,9 @@
 package com.malarcondev.todolist.entity;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 import javax.persistence.*;
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 @Data
 @Entity
@@ -22,6 +21,5 @@ public class TaskEntity implements Serializable {
     @Column(name = "description")
     private String description;
     @Column(name = "date")
-    @JsonFormat(pattern = "yyyy-MM-dd")
-    private LocalDateTime date = LocalDateTime.now();
+    private LocalDate date;
 }

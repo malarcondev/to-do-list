@@ -11,5 +11,9 @@ import java.util.List;
 @Mapper(componentModel = "spring", nullValueCheckStrategy = NullValueCheckStrategy.ALWAYS,
         nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
 public interface TaskMapper {
-    List<TaskDTO> toDto(List<TaskEntity> entity);
+    List<TaskDTO> toDtoList(List<TaskEntity> entity);
+
+    TaskDTO toDto(TaskEntity entity);
+
+    TaskEntity toEntity(TaskDTO dto);
 }
